@@ -1,0 +1,57 @@
+ <!-- Container Principal -->
+    <div class="error-container">
+      <div class="error-card">
+        
+        <!-- Título e Código de Erro -->
+        <header>
+          <!-- O número 404 em destaque -->
+          <p class="error-code">404</p>
+          <!-- Mensagem principal -->
+          <h1 class="main-message">Página Não Encontrada</h1>
+          <!-- Mensagem de suporte -->
+          <p class="support-text">
+            Parece que você se perdeu no espaço digital. A página que você está procurando não existe.
+          </p>
+        </header>
+
+        <!-- Ilustração Simples (SVG ou Icone) -->
+        <div class="illustration">
+            <!-- Ícone de Nave Espacial Perdida (SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" 
+                 stroke="url(#gradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgb(129,140,248);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgb(168,85,247);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M19 14c-1.25.75-2.5 1.5-5 1.5s-3.75-.75-5-1.5" />
+                <path d="M11.5 17.5c-2.5 1.25-5 2-7.5 2h0a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h0c2.5 0 5-.75 7.5-2" />
+                <path d="M12.5 17.5c2.5 1.25 5 2 7.5 2h0a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h0c-2.5 0-5-.75-7.5-2" />
+                <path d="M15 15c-1.25.75-2.5 1.5-5 1.5s-3.75-.75-5-1.5" />
+                <path d="M12 21.5V22a1 1 0 0 0 1 1h0a1 1 0 0 0 1-1v-2.5" />
+                <path d="M10 21.5V22a1 1 0 0 1-1 1h0a1 1 0 0 1-1-1v-2.5" />
+                <path d="M12 21.5V22a1 1 0 0 0 1 1h0a1 1 0 0 0 1-1v-2.5" />
+                <path d="M10 21.5V22a1 1 0 0 1-1 1h0a1 1 0 0 1-1-1v-2.5" />
+                <path d="M8 8.5c0-1.5 1.5-3 4-3s4 1.5 4 3" />
+                <path d="M12 20V5" />
+                <path d="M16 11V3" />
+                <path d="M8 11V3" />
+                <path d="M16 3H8v2h8V3z" />
+            </svg>
+        </div>
+
+        <!-- Botão de Ação -->
+        <a routerLink="/"  class="action-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="button-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Voltar para a Página Inicial
+        </a>
+
+        <!-- Rodapé simples -->
+        <footer class="footer">
+          <p>Se o problema persistir, entre em contato com o suporte.</p>
+        </footer>
+      </div>
+    </div>

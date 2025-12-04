@@ -1,0 +1,174 @@
+<nav class="navbar">
+    <div class="container navbar-content">
+        <div class="logo-text">Web<span>PCD</span></div>
+        <ul class="nav-links">
+            <li (click)="scrollTo('home')">Início</li>
+            <li (click)="scrollTo('offers')">Ofertas</li>
+            <li (click)="scrollTo('rights')">Direitos</li>
+            <li (click)="scrollTo('partners')">Parceiros</li>
+            <li (click)="scrollTo('blog')">Blog</li>
+        </ul>
+        <a [href]="whatsappLink" target="_blank" class="btn-primary-modern">
+            <span class="icon">💬</span> Fale Conosco
+        </a>
+    </div>
+</nav>
+
+<header id="home" class="hero-section-modern">
+    <div class="hero-bg-gradient"></div>
+    <div class="container hero-container">
+        <div class="hero-content-card fadeInUl">
+            <h1>Garanta sua Isenção PCD com <span class="highlight">Segurança & Estilo</span></h1>
+            <p>Descubra como obter até 30% de desconto no seu carro 0km. Processo simplificado e transparente para você.
+            </p>
+
+            
+            <div class="hero-actions">
+                <a [href]="whatsappLink" target="_blank" class="btn-cta-modern pulse">
+                    Quero minha isenção agora
+                </a>
+                <span class="cta-subtext"><small>⚡ Análise rápida e gratuita</small></span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="offers" class="section-modern">
+    <div class="container">
+        <div class="section-header">
+            <h2>Ofertas em Destaque</h2>
+            <p class="subtitle">Veículos selecionados com as melhores condições do mercado.</p>
+        </div>
+
+        <div class="offers-grid-modern">
+            <div class="offer-card-modern slideInUp">
+                <div class="card-image-wrapper">
+                    <div class="placeholder-img car-placeholder modern-placeholder">Foto do Veículo</div>
+                    <span class="tag-discount">-30% OFF</span>
+                </div>
+                <div class="offer-details">
+                    <h3>SUV Compacto Premium 2025</h3>
+                    <div class="price-block">
+                        <span class="old-price">De R$ 120k</span>
+                        <span class="new-price">Por <strong>R$ 89k*</strong></span>
+                    </div>
+                    <a [href]="whatsappLink" class="btn-outline-modern">Tenho interesse</a>
+                </div>
+            </div>
+            <div class="offer-card-modern slideInUp" style="animation-delay: 0.2s;">
+                <div class="card-image-wrapper">
+                    <div class="placeholder-img car-placeholder modern-placeholder">Foto do Veículo</div>
+                    <span class="tag-discount">-25% OFF</span>
+                </div>
+                <div class="offer-details">
+                    <h3>Sedan Executivo Confort</h3>
+                    <div class="price-block">
+                        <span class="old-price">De R$ 140k</span>
+                        <span class="new-price">Por <strong>R$ 105k*</strong></span>
+                    </div>
+                    <a [href]="whatsappLink" class="btn-outline-modern">Tenho interesse</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="rights" class="section-modern bg-offwhite">
+    <div class="container">
+        <div class="section-header">
+            <h2>Quem tem direito?</h2>
+            <p class="subtitle">Confira as principais condições elegíveis para a isenção.</p>
+        </div>
+        <div class="rights-grid-modern">
+            @for (item of rightsList; track $index) {
+                <div class="right-card-modern slideInUp" 
+                [style.animation-delay]="$index * 0.1 + 's'">
+                <div class="icon-box-modern">
+                    <span class="checkmark">✓</span>
+                </div>
+                <p style="font-weight: 500;">{{ item }}</p>
+            </div>
+            }
+            
+        </div>
+    </div>
+</section>
+
+<section class="section-modern">
+    <div class="container">
+        <div class="section-header">
+            <h2>Passo a Passo da Isenção</h2>
+            <p class="subtitle">Jornada simplificada em apenas 4 etapas.</p>
+        </div>
+        <div class="steps-container-modern">
+            @for (step of steps; track $index) {
+                <div class="step-item-modern slideInUp"
+                [style.animation-delay]="$index * 0.15 + 's'">
+                <div class="step-number-modern">{{ step.number }}</div>
+                <h3>{{ step.title }}</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. O processo é mais simples do que parece.</p>
+            </div>
+            }
+            
+        </div>
+    </div>
+</section>
+
+<section id="partners" class="section-modern bg-offwhite">
+    <div class="container">
+        <div class="section-header">
+            <h2>Parceiros Certificados</h2>
+            <p class="subtitle">Rede de especialistas confiáveis para agilizar seu processo.</p>
+        </div>
+        <div class="partners-grid-modern">
+            @for (partner of partners; track $index) {
+                <div class="partner-card-modern slideInUp" 
+                [style.animation-delay]="$index * 0.1 + 's'">
+                <div class="placeholder-logo modern-logo-placeholder">Logo</div>
+                <h3>{{ partner.name }}</h3>
+                <span class="badge-modern">{{ partner.type }}</span>
+                <p class="lorem-text">Parceiro autorizado para agilizar seu processo com total segurança e
+                    transparência.</p>
+                <a [href]="partner.tel" class="link-partner-modern">Falar com parceiro &rarr;</a>
+            </div>
+            }
+            
+        </div>
+    </div>
+</section>
+
+<section id="blog" class="section-modern">
+    <div class="container">
+        <div class="section-header">
+            <h2>Últimas Notícias</h2>
+            <p class="subtitle">Fique por dentro das novidades do mundo PCD.</p>
+        </div>
+        <div class="blog-grid-modern">
+            @for (post of blogPosts; track $index) {
+                 <div class="blog-card-modern slideInUp" 
+                [style.animation-delay]="$index * 0.1 + 's'">
+                <div class="placeholder-img blog-thumb modern-placeholder">Imagem da Notícia</div>
+                <div class="blog-content">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{post.summary}}</p>
+                    <button class="btn-text-modern">Ler notícia completa</button>
+                </div>
+            </div>
+            }   
+           
+        </div>
+    </div>
+</section>
+
+<footer class="footer-modern">
+    <div class="container">
+        <div class="footer-content">
+            <div class="logo-text small">Web <span>PCD</span></div>
+            <p>&copy; 2025 WebPCD. Todos os direitos reservados. Design Moderno.</p>
+        </div>
+    </div>
+</footer>
+
+<a [href]="whatsappLink" target="_blank" class="whatsapp-float-modern pulse-shadow">
+    <span class="whatsapp-icon">📞</span>
+</a>
