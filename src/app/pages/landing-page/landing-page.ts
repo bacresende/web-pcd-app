@@ -10,6 +10,18 @@ export class LandingPage {
   title = 'WebPCD';
   whatsappLink = 'https://wa.me/5511999999999'; // Substituir pelo número real
 
+  // Variável de controle do menu mobile
+  public isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Fecha o menu ao clicar em um link (para UX melhor no mobile)
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+
   //  Informações sobre quem tem direito
   public rightsList = [
     'Pessoas com deficiência física (condutores ou não)',
@@ -41,5 +53,6 @@ export class LandingPage {
 
   public scrollTo(elementId: string): void {
     document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' });
+    this.isMenuOpen = false
   }
 }

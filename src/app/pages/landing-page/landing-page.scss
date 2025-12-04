@@ -95,88 +95,149 @@ a {
     }
 }
 
-// --- Navbar Moderna ---
+// --- Variáveis sugeridas (caso não tenha declarado globalmente) ---
+// $primary-deep: #0A2342;
+// $primary-accent: #2C6EE1;
+// $text-dark: #1A1A1A;
+// $font-heading: 'Poppins', sans-serif;
+
+// --- Navbar Moderna (Seu código base) ---
 .navbar {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px); // Efeito translúcido
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  position: sticky; top: 0; z-index: 1000;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 
-    .navbar-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  .navbar-content {
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 1002; // Fica acima do overlay
+  }
+
+  .logo-text {
+    font-family: $font-heading; font-size: 1.8rem; font-weight: 800; color: $primary-deep;
+    span { color: $primary-accent; }
+  }
+
+  // Estilos da lista (Desktop)
+  ul.nav-links {
+    display: flex; gap: 2.5rem; list-style: none; align-items: center; // Adicionei align-items
+
+    li {
+      font-family: $font-heading; font-weight: 500; color: $text-dark;
+      cursor: pointer; position: relative; transition: color 0.3s;
+
+      &:hover { color: $primary-accent; }
+      &::after {
+        content: ''; position: absolute; width: 0; height: 2px;
+        bottom: -5px; left: 0; background-color: $primary-accent; transition: width 0.3s;
+      }
+      &:hover::after { width: 100%; }
     }
+    
+    // Oculta o botão mobile na versão desktop
+    .mobile-cta { display: none; }
+  }
 
-    .logo-text {
-        font-family: $font-heading;
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: $primary-deep;
+  // Botão Desktop
+  .btn-primary-modern {
+    background: $primary-deep; color: white; padding: 0.8rem 1.8rem;
+    border-radius: 50px; font-family: $font-heading; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 10px rgba($primary-deep, 0.3);
+    text-decoration: none; // Garante sem sublinhado
 
-        span {
-            color: $primary-accent;
-        }
+    &:hover {
+      background: lighten($primary-deep, 5%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba($primary-deep, 0.4);
     }
+    .icon { font-size: 1.1rem; }
+  }
+}
 
+// =================================================================
+// NOVO CÓDIGO: Elementos Responsivos (Hambúrguer e Overlay)
+// =================================================================
+
+// Hambúrguer (Invisível no Desktop)
+.hamburger {
+  display: none; cursor: pointer;
+  
+  .bar {
+    display: block; width: 25px; height: 3px; margin: 5px auto;
+    background-color: $text-dark; 
+    transition: all 0.3s ease-in-out; border-radius: 3px;
+  }
+  
+  // Animação virando X
+  &.active {
+    .bar:nth-child(2) { opacity: 0; }
+    .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  }
+}
+
+// Overlay (Fundo escuro)
+.overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  background: rgba(0,0,0,0.5); z-index: 1000;
+  opacity: 0; visibility: hidden; transition: 0.3s;
+  &.active { opacity: 1; visibility: visible; }
+}
+
+// =================================================================
+// MEDIA QUERY (Onde a mágica acontece)
+// =================================================================
+@media (max-width: 992px) {
+  .navbar {
+    // Exibe o ícone hambúrguer
+    .hamburger { display: block; }
+    
+    // Oculta o botão "Fale Conosco" do header (para usar o do menu)
+    .desktop-only { display: none; }
+
+    // Transforma a lista horizontal em menu lateral vertical
     ul.nav-links {
-        display: flex;
-        gap: 2.5rem;
-        list-style: none;
+      position: fixed;
+      top: 0;
+      right: -100%; // Começa escondido fora da tela
+      height: 100vh;
+      width: 75%; // Largura do menu
+      max-width: 300px;
+      background: #ffffff;
+      flex-direction: column;
+      justify-content: center; // Centraliza itens verticalmente
+      align-items: center;
+      padding: 2rem;
+      gap: 2rem; // Espaço entre os links
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      transition: right 0.4s ease-in-out;
+      z-index: 1001;
 
-        li {
-            font-family: $font-heading;
-            font-weight: 500;
-            color: $text-dark;
-            cursor: pointer;
-            position: relative;
+      // Quando ativo, desliza para dentro
+      &.active { right: 0; }
 
-            &:hover {
-                color: $primary-accent;
-            }
+      // Ajustes dos links no mobile
+      li {
+        font-size: 1.2rem; // Links maiores
+        width: 100%;
+        text-align: center;
+      }
 
-            &::after {
-                content: '';
-                position: absolute;
-                width: 0;
-                height: 2px;
-                bottom: -5px;
-                left: 0;
-                background-color: $primary-accent;
-                transition: width 0.3s;
-            }
-
-            &:hover::after {
-                width: 100%;
-            }
-        }
+      // Exibe o botão dentro do menu
+      .mobile-cta { 
+        display: block; 
+        width: 100%;
+        margin-top: 1rem;
+      }
+      
+      .full-width {
+        width: 100%;
+        justify-content: center;
+      }
     }
-
-    .btn-primary-modern {
-        background: $primary-deep;
-        color: white;
-        padding: 0.8rem 1.8rem;
-        border-radius: 50px;
-        font-family: $font-heading;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 4px 10px rgba($primary-deep, 0.3);
-
-        &:hover {
-            background: lighten($primary-deep, 5%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba($primary-deep, 0.4);
-        }
-
-        .icon {
-            font-size: 1.1rem;
-        }
-    }
+  }
 }
 
 // --- Hero Section Moderna ---

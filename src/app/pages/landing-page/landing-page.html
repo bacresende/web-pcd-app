@@ -1,17 +1,33 @@
 <nav class="navbar">
-    <div class="container navbar-content">
-        <div class="logo-text">Web<span>PCD</span></div>
-        <ul class="nav-links">
-            <li (click)="scrollTo('home')">Início</li>
-            <li (click)="scrollTo('offers')">Ofertas</li>
-            <li (click)="scrollTo('rights')">Direitos</li>
-            <li (click)="scrollTo('partners')">Parceiros</li>
-            <li (click)="scrollTo('blog')">Blog</li>
-        </ul>
-        <a [href]="whatsappLink" target="_blank" class="btn-primary-modern">
-            <span class="icon">💬</span> Fale Conosco
-        </a>
+  <div class="container navbar-content">
+    <div class="logo-text">Web<span>PCD</span></div>
+
+    <div class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </div>
+
+    <ul class="nav-links" [class.active]="isMenuOpen">
+      <li (click)="scrollTo('home')">Início</li>
+      <li (click)="scrollTo('offers')">Ofertas</li>
+      <li (click)="scrollTo('rights')">Direitos</li>
+      <li (click)="scrollTo('partners')">Parceiros</li>
+      <li (click)="scrollTo('blog')">Blog</li>
+
+      <li class="mobile-cta">
+        <a [href]="whatsappLink" target="_blank" class="btn-primary-modern full-width">
+          <span class="icon">💬</span> Fale Conosco
+        </a>
+      </li>
+    </ul>
+
+    <a [href]="whatsappLink" target="_blank" class="btn-primary-modern desktop-only">
+      <span class="icon">💬</span> Fale Conosco
+    </a>
+  </div>
+
+  <div class="overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
 </nav>
 
 <header id="home" class="hero-section-modern">
